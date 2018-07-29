@@ -1,6 +1,5 @@
 'use strict';
 function openMail() {
-    console.log('1');
     const values = ['Открыть', 'Закрыть'];
     const btn = document.getElementById('open');
     const mail = document.getElementById('mail');

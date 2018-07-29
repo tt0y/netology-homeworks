@@ -13,7 +13,7 @@ const arrImages = [
     'i/guggenheim-museum.jpg',
     'i/headquarters.jpg',
     'i/IAC.jpg',
-    'new-museum.jpg',
+    'i/new-museum.jpg',
 ];
 
 let currentSlide = 0;
@@ -25,8 +25,6 @@ function nextSlide() {
         currentSlide = 0;
     }
     slider.src = arrImages[currentSlide - 1];
-    console.log('nextSlide');
-    console.log(slider.src);
 }
 
 function prevSlide() {
@@ -36,8 +34,6 @@ function prevSlide() {
         currentSlide--;
     }
     slider.src = arrImages[currentSlide-1];
-    console.log('prevSlide');
-    console.log(slider.src);
 }
 
 prevBtn.onclick = prevSlide;
