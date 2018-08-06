@@ -4,6 +4,8 @@ function loadContacts() {
   return '[{"name":"Василий Николаев","email":"vnikola9999@gmail.com","phone":"+7 999 777 34 34"},{"name":"Елена Вишневская","email":"lenochka22333@yandex.ru","phone":"+7 888 777 11 11"},{"name":"Артём Кузнецов","email":"kuznya_foreva@gmail.com","phone":"+7 222 555 76 67"},{"name":"Алексей Гусенко","email":"jiznboliyaetoznayu@mail.com","phone":"+7 333 545 12 34"},{"name":"Маргарита Сотникова","email":"pobeditelnicapojizni111@gmail.com","phone":"+7 323 534 32 12"}]';
 }
 
+
+
 function contactClick(event) {
   let target = null;
   if (event.target.tagName === 'LI') {
@@ -29,10 +31,26 @@ function backClick() {
   }
 }
 
+function showContacts() {
+    let text = JSON.parse(loadContacts());
+    var rootElement = document.getElementsByClassName("contacts-list")[0];
+    var newElement;
+    text.forEach(v => {
+        newElement = document.createElement("li");
+        newElement.dataset.email = v.email;
+        newElement.dataset.phone = v.phone;
+        newElement.innerHTML = `<strong>${v.name}</strong>`;
+        rootElement.appendChild(newElement);
+    });
+
+}
+
 function init() {
   container = document.getElementById('container');
   container.querySelector('.list-view').addEventListener('click', contactClick);
   container.querySelector('.back').addEventListener('click', backClick);
+  showContacts();
+
 }
 
 document.addEventListener('DOMContentLoaded', init);
