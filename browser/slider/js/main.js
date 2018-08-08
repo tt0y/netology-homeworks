@@ -17,5 +17,5 @@ let currentSlide = 0;
 
 setInterval(() => {
     slider.src = arrImages[currentSlide];
-    currentSlide === 4 ? currentSlide = 0 : currentSlide += 1;
+    currentSlide === arrImages.length ? currentSlide = 0 : currentSlide += 1;
 }, 5000);
