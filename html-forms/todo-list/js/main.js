@@ -3,25 +3,33 @@
  */
 
 'use strict';
-const inputs = document.getElementsByTagName('INPUT');
+const elements = document.getElementsByTagName('INPUT');
+document.addEventListener('DOMContentLoaded', calcChecked(elements));
 
-[].forEach.call(inputs, function(el){
+function forEach(list, callback) {
+    Array.prototype.forEach.call(list, callback);
+}
+
+function calcChecked(elements){
+    const taskFinished = document.getElementById('out');
+    const allTaskFinished = document.getElementById('set');
+
+    let count = 0;
+    for (let i = 0; i < elements.length; i++)
+        if (elements[i].type == 'checkbox' && elements[i].checked)
+            count++;
+
+    if (count === elements.length)
+        allTaskFinished.classList.toggle('complete');
+    else
+        allTaskFinished.classList.remove('complete');
+
+    taskFinished.value = `${count} из ${elements.length}`;
+}
+
+forEach(elements, function (el) {
     el.addEventListener('change', function (e) {
-
-        const taskFinished = document.getElementById('out');
-        const allTaskFinished = document.getElementById('set');
-
-        let count = 0;
-        for (let i = 0; i < inputs.length; i++)
-            if (inputs[i].type == 'checkbox' && inputs[i].checked)
-                count++;
-
-        if (count === inputs.length)
-            allTaskFinished.classList.toggle('complete');
-        else
-            allTaskFinished.classList.remove('complete');
-
-        taskFinished.value = `${count} из ${inputs.length}`;
+        calcChecked(elements);
     })
 });
 
