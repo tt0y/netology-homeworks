@@ -5,10 +5,12 @@
 
 let loader = document.getElementById('loader');
 let result = document.getElementById('result');
+let source = document.getElementById('source');
 let from = document.getElementById('from');
 let to = document.getElementById('to');
 
 loader.classList.remove('hidden');
+source.addEventListener('keyup', calcValues);
 from.addEventListener('change', calcValues);
 to.addEventListener('change', calcValues);
 
@@ -22,7 +24,8 @@ request.addEventListener(
 );
 
 function calcValues() {
-    result.value = from.options[from.selectedIndex].value * to.options[to.selectedIndex].value;
+    let sum = source.value * from.options[from.selectedIndex].value / to.options[to.selectedIndex].value;
+    result.value = sum.toFixed(2);
 }
 
 function onReadyStateChange() {
