@@ -7,11 +7,11 @@ const message = document.getElementsByName('message');
 const zipcode = document.getElementById('zipcode');
 
 
-document.addEventListener('DOMContentLoaded', initFields(inputs));
+document.addEventListener('DOMContentLoaded', initFields());
 zipcode.addEventListener('keyup', zipCodeFilter);
 
+// Фильтруем лишнее
 function zipCodeFilter() {
-    console.log(zipcode.value);
     let zip = parseInt(zipcode.value.replace(/\D+/g,""));
     if (isNaN(zip))
         zipcode.value = '';
@@ -24,13 +24,21 @@ function forEach(list, callback) {
     Array.prototype.forEach.call(list, callback);
 }
 
-function initFields(elements) {
+function initFields() {
     console.log('initFields');
 
     // Повесим на все элементы лисенеры
-    forEach(elements, function (el) {
-        el.addEventListener('change', function (e) {
+    forEach(inputs, function (inp) {
+        inp.addEventListener('change', function (e) {
             calcFillFields(inputs);
+        })
+    });
+
+    forEach(buttons, function (btn) {
+        if (btn.type === 'submit')
+        btn.addEventListener('click', function (e) {
+            output.classList.remove('hidden')
+            output.classList.remove('hidden')
         })
     });
 }
@@ -41,15 +49,14 @@ function calcFillFields(elements){
 
     let count = 0;
 
-    for (let i = 0; i < elements.length; i++) {
-        if (elements[i].value !== '') {
+    forEach(elements, function (el) {
+        if (el.value !== '') {
             count++;
         }
-    }
+    });
 
-    if (count === elements.length && message.value !== ''){
-        for (let i = 0; i < buttons.length; i++)
-            if (buttons[i].type === 'submit')
-                buttons[i].disabled = false;
-    }
+    forEach(buttons, function (btn) {
+        if (btn.type === 'submit' && count === elements.length)
+            btn.disabled = false;
+    });
 }
