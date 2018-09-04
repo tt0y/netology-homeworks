@@ -25,7 +25,7 @@ const
     btnPlay = document.getElementsByClassName('playstate')[0],
     btnNext = document.getElementsByClassName('next')[0],
     btnPrev = document.getElementsByClassName('back')[0],
-    btnStop = document.getElementsByClassName('fa-stop')[0],
+    btnStop = document.getElementsByClassName('stop')[0],
     title = document.getElementsByClassName('title')[0];
 
 btnPlay.onclick = function() {
