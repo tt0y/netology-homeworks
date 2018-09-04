@@ -4,36 +4,15 @@
 
 'use strict';
 
-const audio = document.getElementsByTagName('audio');
+(function () {
 
-const
-    keyClap = document.getElementsByClassName('drum-kit__drum key-clap'),
-    keyHihat = document.getElementsByClassName('drum-kit__drum key-hihat'),
-    keyKick = document.getElementsByClassName('drum-kit__drum key-kick'),
-    keyOpenhat = document.getElementsByClassName('drum-kit__drum key-openhat'),
-    keyBoom = document.getElementsByClassName('drum-kit__drum key-boom'),
-    keyRide = document.getElementsByClassName('drum-kit__drum key-ride');
+    const drumKeyList = document.getElementsByClassName('drum-kit__drum');
 
-keyClap[0].onclick = function () {
-    audio[0].play();
-};
+    for (let key of drumKeyList) {
+        key.onclick = function () {
+            const audioKit = this.getElementsByTagName('audio')[0];
+            audioKit.play();
+        }
+    }
 
-keyHihat[0].onclick = function () {
-    audio[1].play();
-};
-
-keyKick[0].onclick = function () {
-    audio[2].play();
-};
-
-keyOpenhat[0].onclick = function () {
-    audio[3].play();
-};
-
-keyBoom[0].onclick = function () {
-    audio[4].play();
-};
-
-keyRide[0].onclick = function () {
-    audio[5].play();
-};
+})();
